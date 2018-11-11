@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logger</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        #cb{
+            position: relative;
+            top: 50vh;
+            transform: translate(0, -50%);
+        }
+        img{
+            height: 100px;
+            width: 100px;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 20px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-database.js"></script>
+</head>
+<body>
+    <div class="row" id="cb">
+        <div class="col s12 m6 offset-m3">
+            <div class="row">
+                <div class="col s12">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title center-align"><h4>Sign Monitoring</h4></span>
+                            <div id="signImg"></div>
+                        </div>
+                        <div class="card-action" style="padding: 0px;">
+                            <a href="#"><h4 class="center-align" id="signText" style="margin: 0px;"></h4></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyCH5t6nfSI_Cm0Jd3DTcgSq2vBYVMuTxzA",
+        authDomain: "logger-9541c.firebaseapp.com",
+        databaseURL: "https://logger-9541c.firebaseio.com",
+        projectId: "logger-9541c",
+        storageBucket: "logger-9541c.appspot.com",
+        messagingSenderId: "918991327386"
+    };
+    firebase.initializeApp(config);
+    var db = firebase.database();
+    var ref = db.ref('sign_log');
+    ref.on('value', function(snapshot) {
+        console.log(snapshot.val());
+        var sign = snapshot.val().sign;
+        document.getElementById('signText').innerHTML = sign;
+        var myNode = document.getElementById('signImg');
+        while (myNode.firstChild) {
+            myNode.removeChild(myNode.firstChild);
+        }
+        var DOM_img = document.createElement("img");
+        if(sign === 'Turn Left'){
+            DOM_img.src = "./signs/turnLeft.png";
+        }
+        else if(sign === 'Turn Right'){
+            DOM_img.src = "./signs/turnRight.png";
+        }
+        else if(sign === 'Turn Back'){
+            DOM_img.src = "./signs/turnBack.png";
+        }
+        else if(sign === 'Move Straight'){
+            DOM_img.src = "./signs/moveStraight.png";
+        }
+        document.getElementById('signImg').appendChild(DOM_img);
+
+    }, function(error){
+        console.log(error)
+    });
+</script>
+</body>
+</html>
