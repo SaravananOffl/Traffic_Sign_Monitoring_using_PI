@@ -8,7 +8,7 @@ from firebase import firebase
 #import imutils
 
 camera = cv2.VideoCapture(0)
-# firebase = firebase.FirebaseApplication('https://logger-9541c.firebaseio.com/')
+firebase = firebase.FirebaseApplication('https://logger-9541c.firebaseio.com/') # your
 
 import datetime
 time = datetime.datetime.now().time()
