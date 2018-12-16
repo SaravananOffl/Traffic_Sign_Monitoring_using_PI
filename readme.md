@@ -21,4 +21,3 @@
 
 ### Website to monitor the signs:
 <img src="/working_photos/webapp.png" width="300" height="300">
-
