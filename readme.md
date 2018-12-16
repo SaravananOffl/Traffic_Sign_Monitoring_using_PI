@@ -1,8 +1,15 @@
 # Traffic Sign Monitoring 
 
-## Components Required : 
 
+## Harware Components Required : 
+ * Raspberry Pi
+ * Webcam
+    
+## Software Requirements:
 
-
-
+ * Numpy
+ * Open CV
+ * Imutils
+ 
 ## Process Involved: 
+
